@@ -2,7 +2,7 @@
 
 [program:lateral]
 process_name = lateral-%(process_num)s
-environment = PYTHONPATH="%(here)s/apps/lateral-production/current"
+environment = PYTHONPATH="%(here)s/apps/lateral-task/lateral"
 command = python -m lateral.app
 	--port=%(process_num)s
 	--log_file_prefix=%(here)s/logs/%(program_name)s-%(process_num)s.log
