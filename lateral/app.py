@@ -1,5 +1,6 @@
 import datetime
 import json
+import urllib2
 
 from environs import Env
 import requests
@@ -33,14 +34,15 @@ class Application(tornado.web.Application):
 class MainHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header("Access-Control-Allow-Origin", "*")
-        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
-        self.set_header("Access-Control-Allow-Methods", "GET POST")
+        self.set_header("Access-Control-Allow-Headers", "*")
+        self.set_header("Access-Control-Allow-Methods", "*")
 
     def get(self):
       self.write({ "message": datetime.datetime.now().strftime("%H:%M:%S") })
 
-    def post(self):
-        body = json.loads(self.request.body)
+    def options(self):
+        query = self.request.query
+        body = {"text": urllib2.unquote(query)}
         url = 'https://news-api.lateral.io/documents/similar-to-text'
         payload = json.dumps(body)
         headers = {
