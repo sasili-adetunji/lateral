@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-// import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import axios from 'axios';
+import './App.css';
+import Data from './Data'
 import Form from 'react-bootstrap/Form'
 
-
-import axios from 'axios';
-
-
-import './App.css';
 
 function App() {
 
   const [date, setDate] = useState({ date: '' });
+  const [data, setData] = useState({ data: [] });
+  const [fields, setValues] = useState({text: ''});
 
   useEffect(() => {
     const fetchDate = async () => {
@@ -21,9 +20,6 @@ function App() {
     fetchDate()
   }, []);
 
-  const [fields, setValues] = useState({
-    text: "",
-  });
 
   const handleFieldChange = (e) => {
     e.preventDefault()
@@ -37,7 +33,10 @@ function App() {
     e.preventDefault()
     const url = 'http://localhost:8000/recommendations?' + fields.text
     const result = await axios.options(url, {})
-    console.log(result.data)
+    setData({
+      ...data,
+      data: result.data
+    })
   }
 
   return (
@@ -45,19 +44,19 @@ function App() {
     <h1> Welcome to recommendations</h1>
     <h2> {date.message}</h2>
     <form onSubmit={handleSubmit}>
-        <Form.Group controlId="text">
-          <Form.Control
-            autoFocus
-            type="text"
-            value={fields.text}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-        <button type="submit">
+      <Form.Group controlId="text">
+            <Form.Control
+              autoFocus
+              type="text"
+              value={fields.text}
+              onChange={handleFieldChange}
+            />
+          </Form.Group>
+        <button className="col-md-3 btn btn-primary" type="submit">
         Submit
         </button>
-
       </form>
+      <Data data={data.data} />
     </div>
   );
 }
