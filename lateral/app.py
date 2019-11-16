@@ -14,7 +14,7 @@ class Application(tornado.web.Application):
         ]
         settings = dict(
             cookie_secret="43oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
-            # template_path=os.path.join(os.path.dirname(__file__), "templates"),
+            template_path=os.path.join(os.path.dirname(__file__), "templates"),
             # static_path=os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies=True,
         )
@@ -23,7 +23,8 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write('Hello, world Lateral Tornado')
+        # self.write('Hello, world Lateral Tornado')
+        self.render("index.html")
 
 
 
