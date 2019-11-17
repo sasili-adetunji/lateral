@@ -55,6 +55,7 @@ def main():
     tornado.options.parse_command_line()
     app = Application()
     app.listen(options.port)
+    print('Listening on http://localhost:%i' % options.port)
     tornado.ioloop.IOLoop.instance().start()
 
 
