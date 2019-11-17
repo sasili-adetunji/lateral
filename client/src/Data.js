@@ -1,11 +1,10 @@
 import React from 'react'
-import './Data.css';
-import moment from 'moment'
+import moment from 'moment'; // to make the date human readable
 
 function Data(props) {
     const result = props.documents.map(document => {
         return (
-            <tr key={document.published}>
+            <tr key={document.published}>  {/* making published the key since it is unique */}
                 <td>{document.title}</td>
                 <td> <a href={document.url}>{document.source_name}</a> </td>
                 <td>{moment(document.published).format('MM/DD/YYYY')}</td>
@@ -17,30 +16,29 @@ function Data(props) {
 
     return (
         <div>
+            {/* making sure table header is not shown when the data is not rendered */}
             { props.documents.length > 0 ?
-                    (
+                (
                     <div className="container">
                     <div className="row">
-                        <div className="col-md-12">
-                            <h3>Documents </h3>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Source</th>
-                                        <th>Published Date</th>
-                                        <th>Summary</th>
-                                        <th>Thumbnail</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {result}
-                                </tbody>
-                            </table>
-                        </div>
+                        <h3>Documents </h3>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Source</th>
+                                    <th>Published Date</th>
+                                    <th>Summary</th>
+                                    <th>Thumbnail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {result}
+                            </tbody>
+                        </table>
                     </div>
-                </div> )
-                : null
+                </div>
+                ): null
             }
         </div>
     )

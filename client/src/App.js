@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Data from './Data';
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'; // to load env file
 
 
 dotenv.config();
