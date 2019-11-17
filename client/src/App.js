@@ -47,8 +47,8 @@ function App() {
     <hr/>
     <h3>Type a text</h3>
     <form onSubmit={handleSubmit}>
-      <div class="form-row">
-        <div class="col">
+      <div className="form-row">
+        <div className="col">
           <input className="form-control"
             id="text"
             autoFocus
@@ -57,7 +57,7 @@ function App() {
             onChange={handleFieldChange}
           />
         </div>
-        <div class="col">
+        <div className="col">
           <button className="btn btn-primary" type="submit">
           Submit
           </button>

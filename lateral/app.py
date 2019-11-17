@@ -36,7 +36,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.set_header("Access-Control-Allow-Methods", "*")
 
     def get(self):
-      self.write({ "message": datetime.datetime.now().strftime("%H:%M:%S") })
+        self.write({ "message": datetime.datetime.now().strftime("%H:%M:%S") })
 
     def options(self):
         query = self.request.query
