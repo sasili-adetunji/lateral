@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Data from './Data'
+import Data from './Data';
+import dotenv from 'dotenv';
 
+
+dotenv.config();
 
 function App() {
 
@@ -11,8 +14,7 @@ function App() {
 
   useEffect(() => {
     const fetchDate = async () => {
-      const result = await axios (
-          'http://localhost:8000');
+      const result = await axios ( process.env.REACT_APP_API_URL)
     setDate(result.data);
     };
     fetchDate()
@@ -29,7 +31,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const url = 'http://localhost:8000/recommendations?' + fields.text
+    const url = process.env.REACT_APP_API_URL + '/recommendations?' + fields.text
     const result = await axios.options(url, {})
     setData({
       ...data,
