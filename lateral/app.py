@@ -25,8 +25,6 @@ class Application(tornado.web.Application):
         ]
         settings = dict(
             cookie_secret="43oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
-            # template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            # static_path=os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies=True,
         )
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -42,7 +40,7 @@ class MainHandler(tornado.web.RequestHandler):
 
     def options(self):
         query = self.request.query
-        body = {"text": urllib2.unquote(query)}
+        body = {"text": urllib2.unquote(query)} # to unquote a urlencoded unicode string.
         url = 'https://news-api.lateral.io/documents/similar-to-text'
         payload = json.dumps(body)
         headers = {
