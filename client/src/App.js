@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
 import Data from './Data'
-import Form from 'react-bootstrap/Form'
 
 
 function App() {
@@ -40,23 +38,31 @@ function App() {
   }
 
   return (
-    <div className="App">
-    <h1> Welcome to recommendations</h1>
-    <h2> {date.message}</h2>
+    <div className="container">
+    <h2> Welcome to similar text recommendations</h2>
+    <hr/>
+    <h4> <time> {date.message} </time> </h4>
+    <hr/>
+    <h3>Type a text</h3>
     <form onSubmit={handleSubmit}>
-      <Form.Group controlId="text">
-            <Form.Control
-              autoFocus
-              type="text"
-              value={fields.text}
-              onChange={handleFieldChange}
-            />
-          </Form.Group>
-        <button className="col-md-3 btn btn-primary" type="submit">
-        Submit
-        </button>
-      </form>
-      <Data data={data.data} />
+      <div class="form-row">
+        <div class="col">
+          <input className="form-control"
+            id="text"
+            autoFocus
+            type="text"
+            value={fields.text}
+            onChange={handleFieldChange}
+          />
+        </div>
+        <div class="col">
+          <button className="btn btn-primary" type="submit">
+          Submit
+          </button>
+        </div>
+      </div>
+    </form>
+      <Data documents={data.data} />
     </div>
   );
 }
